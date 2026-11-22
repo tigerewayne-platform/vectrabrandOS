@@ -1,0 +1,137 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "defaultPalette": false,
+      "custom": false,
+      "palette": [
+        {
+          "slug": "graphite",
+          "name": "Graphite",
+          "color": "#1b2330"
+        },
+        {
+          "slug": "graphite-frame",
+          "name": "Graphite Frame",
+          "color": "#1b2330"
+        },
+        {
+          "slug": "frame-ink",
+          "name": "Frame Ink",
+          "color": "#f2f4f7"
+        },
+        {
+          "slug": "copper",
+          "name": "Copper",
+          "color": "#e8641c"
+        },
+        {
+          "slug": "copper-ink",
+          "name": "Copper Ink",
+          "color": "#1b2330"
+        },
+        {
+          "slug": "copper-text",
+          "name": "Copper Text",
+          "color": "#b84a0d"
+        },
+        {
+          "slug": "bench",
+          "name": "Bench",
+          "color": "#f5f6f8"
+        },
+        {
+          "slug": "card",
+          "name": "Card",
+          "color": "#ffffff"
+        },
+        {
+          "slug": "tile",
+          "name": "Tile",
+          "color": "#eceff3"
+        },
+        {
+          "slug": "hairline",
+          "name": "Hairline",
+          "color": "#e2e6eb"
+        },
+        {
+          "slug": "slate",
+          "name": "Slate",
+          "color": "#5d6878"
+        },
+        {
+          "slug": "stock-in",
+          "name": "Stock In",
+          "color": "#16834a"
+        },
+        {
+          "slug": "stock-low",
+          "name": "Stock Low",
+          "color": "#b45309"
+        },
+        {
+          "slug": "stock-out",
+          "name": "Stock Out",
+          "color": "#b91c1c"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display",
+          "fontFamily": "\"Sora\", \"Segoe UI\", system-ui, sans-serif"
+        },
+        {
+          "slug": "sans",
+          "name": "Sans",
+          "fontFamily": "\"Manrope\", \"Segoe UI\", system-ui, sans-serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Mono",
+          "fontFamily": "\"JetBrains Mono\", ui-monospace, monospace"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "slug": "space-1",
+          "name": "space-1",
+          "size": "4px"
+        },
+        {
+          "slug": "space-2",
+          "name": "space-2",
+          "size": "8px"
+        },
+        {
+          "slug": "space-3",
+          "name": "space-3",
+          "size": "12px"
+        },
+        {
+          "slug": "space-5",
+          "name": "space-5",
+          "size": "20px"
+        },
+        {
+          "slug": "space-8",
+          "name": "space-8",
+          "size": "32px"
+        }
+      ]
+    },
+    "custom": {
+      "radius": {
+        "sm": "6px",
+        "md": "14px",
+        "pill": "999px"
+      }
+    }
+  }
+}

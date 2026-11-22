@@ -1,0 +1,62 @@
+/* Vectra Shop brand tokens. Generated from brand/tokens.json. Do not edit. */
+:root {
+  --vs-graphite: #1b2330;
+  --vs-graphite-frame: #1b2330;
+  --vs-frame-ink: #f2f4f7;
+  --vs-copper: #e8641c;
+  --vs-copper-ink: #1b2330;
+  --vs-copper-text: #b84a0d;
+  --vs-bench: #f5f6f8;
+  --vs-card: #ffffff;
+  --vs-tile: #eceff3;
+  --vs-hairline: #e2e6eb;
+  --vs-slate: #5d6878;
+  --vs-stock-in: #16834a;
+  --vs-stock-low: #b45309;
+  --vs-stock-out: #b91c1c;
+  --vs-space-1: 4px;
+  --vs-space-2: 8px;
+  --vs-space-3: 12px;
+  --vs-space-5: 20px;
+  --vs-space-8: 32px;
+  --vs-radius-sm: 6px;
+  --vs-radius-md: 14px;
+  --vs-radius-pill: 999px;
+  --vs-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --vs-font-sans: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --vs-font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --vs-graphite: #e6eaf0;
+  --vs-graphite-frame: #0b1016;
+  --vs-frame-ink: #e6eaf0;
+  --vs-copper: #f08a4b;
+  --vs-copper-ink: #121820;
+  --vs-copper-text: #f08a4b;
+  --vs-bench: #121820;
+  --vs-card: #1a2129;
+  --vs-tile: #232b35;
+  --vs-hairline: #2c3440;
+  --vs-slate: #9aa5b3;
+  --vs-stock-in: #34c27a;
+  --vs-stock-low: #f5a524;
+  --vs-stock-out: #f87171;
+  }
+}
+:root[data-theme="dark"] {
+  --vs-graphite: #e6eaf0;
+  --vs-graphite-frame: #0b1016;
+  --vs-frame-ink: #e6eaf0;
+  --vs-copper: #f08a4b;
+  --vs-copper-ink: #121820;
+  --vs-copper-text: #f08a4b;
+  --vs-bench: #121820;
+  --vs-card: #1a2129;
+  --vs-tile: #232b35;
+  --vs-hairline: #2c3440;
+  --vs-slate: #9aa5b3;
+  --vs-stock-in: #34c27a;
+  --vs-stock-low: #f5a524;
+  --vs-stock-out: #f87171;
+}
