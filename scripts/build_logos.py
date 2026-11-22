@@ -1,7 +1,8 @@
 """Generate Vectra Split V logo SVGs with outlined type.
 
-Needs Sora (wght 800) and Manrope (wght 700) static TTFs, made from the Google Fonts variable files with
-fontTools.varLib.instancer. Usage: python3 scripts/build_logos.py <fontdir> brand/assets
+Wordmark: lowercase "vectra" in Geist 700 with the descriptor ("shop" or "group") in Geist 300.
+Needs Geist-700.ttf and Geist-300.ttf (static instances of the Geist variable font, made with
+fontTools.varLib.instancer) and Manrope-700.ttf for banner lines. Usage: python3 scripts/build_logos.py <fontdir> brand/assets
 PNGs are rendered from these SVGs with a headless browser.
 """
 import sys, os
@@ -11,11 +12,13 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
 
 FONTDIR, OUT = sys.argv[1], sys.argv[2]
-SORA = TTFont(os.path.join(FONTDIR, "Sora-800.ttf"))
+GB = TTFont(os.path.join(FONTDIR, "Geist-700.ttf"))
+GL = TTFont(os.path.join(FONTDIR, "Geist-300.ttf"))
 MANR = TTFont(os.path.join(FONTDIR, "Manrope-700.ttf"))
 
 C = dict(graphite="#1B2330", copper="#E8641C", ink="#F2F4F7", copper_text="#B84A0D",
-         copper_light="#F08A4B", blade_dim="#263142", white="#FFFFFF")
+         copper_light="#F08A4B", blade_dim="#263142", white="#FFFFFF",
+         slate="#5D6878", slate_light="#9AA5B3")
 
 def text_path(font, text, size, tracking_em=0.0):
     """Return (svg path d, width, capheight) for text set at `size` px, baseline at y=0 (y down)."""
@@ -53,50 +56,44 @@ def svg(w, h, body, bg=None, title="Vectra"):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.2f} {h:.2f}" '
             f'width="{w:.0f}" height="{h:.0f}" role="img" aria-label="{title}"><title>{title}</title>{rect}{body}</svg>\n')
 
-def lockup_group(word_fill, desc_fill, left, right, desc, x0=0, y0=0, cap=100, stacked=False):
-    """Return (svg body, width, height). cap = cap height of VECTRA in px."""
-    size = cap / (SORA["OS/2"].sCapHeight / 1000)
-    d_w, w_w, _ = text_path(SORA, "VECTRA", size, -0.01)
-    dcap = cap * 0.30
-    dsize = dcap / (MANR["OS/2"].sCapHeight / MANR["head"].unitsPerEm)
-    dd, dw, _ = text_path(MANR, desc.upper(), dsize, 0.32)
-    gap_v = cap * 0.30
-    block_h = cap + gap_v + dcap
-    if not stacked:
-        mh = block_h
-        mbody, mw = mark(x0, y0, mh, left, right)
-        tx = x0 + mw + cap * 0.42
-        body = mbody
-        body += f'<path fill="{word_fill}" transform="translate({tx:.2f},{y0+cap:.2f})" d="{d_w}"/>'
-        body += f'<path fill="{desc_fill}" transform="translate({tx+cap*0.03:.2f},{y0+block_h:.2f})" d="{dd}"/>'
-        return body, mw + cap * 0.42 + max(w_w, dw + cap * 0.03), block_h
-    else:
-        mh = cap * 1.6
-        width = max(w_w, dw)
-        mw = MW * mh / MH
-        mbody, _ = mark(x0 + (width - mw) / 2, y0, mh, left, right)
-        ty = y0 + mh + cap * 0.45
-        body = mbody
-        body += f'<path fill="{word_fill}" transform="translate({x0+(width-w_w)/2:.2f},{ty+cap:.2f})" d="{d_w}"/>'
-        body += f'<path fill="{desc_fill}" transform="translate({x0+(width-dw)/2:.2f},{ty+cap+gap_v+dcap:.2f})" d="{dd}"/>'
-        return body, width, mh + cap * 0.45 + block_h
+def cap_size(font, cap):
+    return cap / (font["OS/2"].sCapHeight / font["head"].unitsPerEm)
+
+def words(desc, cap):
+    """Paths for 'vectra' (bold) and the descriptor (light). Both set at the same size."""
+    size = cap_size(GB, cap) * 1.18
+    d_w, w_w, _ = text_path(GB, "vectra", size, -0.035)
+    d_d, w_d, _ = text_path(GL, desc.lower(), size, -0.01)
+    return d_w, w_w, d_d, w_d
 
 def inline_group(word_fill, desc_fill, left, right, desc, x0=0, y0=0, cap=100):
-    """One-line lockup: mark, VECTRA, descriptor on a shared baseline. Returns (body, width, height)."""
-    size = cap / (SORA["OS/2"].sCapHeight / 1000)
-    d_w, w_w, _ = text_path(SORA, "VECTRA", size, -0.01)
-    dcap = cap * 0.62
-    dsize = dcap / (MANR["OS/2"].sCapHeight / MANR["head"].unitsPerEm)
-    dd, dw, _ = text_path(MANR, desc.upper(), dsize, 0.18)
+    """One-line lockup: mark, 'vectra' and the descriptor on a shared baseline. Returns (body, width, height)."""
+    d_w, w_w, d_d, w_d = words(desc, cap)
     mh = cap * 1.3
     mbody, mw = mark(x0, y0, mh, left, right)
-    base = y0 + (mh + cap) / 2          # VECTRA cap height centred on the mark
+    base = y0 + (mh + cap) / 2
     tx = x0 + mw + cap * 0.38
-    dx = tx + w_w + cap * 0.30
+    dx = tx + w_w + cap * 0.22
     body = mbody
     body += f'<path fill="{word_fill}" transform="translate({tx:.2f},{base:.2f})" d="{d_w}"/>'
-    body += f'<path fill="{desc_fill}" transform="translate({dx:.2f},{base:.2f})" d="{dd}"/>'
-    return body, (dx - x0) + dw, mh
+    body += f'<path fill="{desc_fill}" transform="translate({dx:.2f},{base:.2f})" d="{d_d}"/>'
+    return body, (dx - x0) + w_d, mh
+
+def lockup_group(word_fill, desc_fill, left, right, desc, x0=0, y0=0, cap=100, stacked=False):
+    """Horizontal is the one-line lockup. Stacked puts the mark centred above the words."""
+    if not stacked:
+        return inline_group(word_fill, desc_fill, left, right, desc, x0, y0, cap)
+    d_w, w_w, d_d, w_d = words(desc, cap)
+    gap = cap * 0.22
+    width = w_w + gap + w_d
+    mh = cap * 1.9
+    mw = MW * mh / MH
+    mbody, _ = mark(x0 + (width - mw) / 2, y0, mh, left, right)
+    base = y0 + mh + cap * 0.55 + cap * 1.18
+    body = mbody
+    body += f'<path fill="{word_fill}" transform="translate({x0:.2f},{base:.2f})" d="{d_w}"/>'
+    body += f'<path fill="{desc_fill}" transform="translate({x0+w_w+gap:.2f},{base:.2f})" d="{d_d}"/>'
+    return body, width, base - y0 + cap * 0.32
 
 def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -118,13 +115,15 @@ for name, (l, r, bg) in marks.items():
     write(f"{OUT}/logo/mark/{name}.svg", svg(mw + 2 * pad, 152 + 2 * pad, b, bg, "Vectra"))
 
 # ---- Lockups
+# Descriptor colour (light ground, dark ground): copper for the shop, slate for the company.
+DESC = {"Shop": (C["copper_text"], C["copper_light"]), "Group": (C["slate"], C["slate_light"])}
 for desc in ("Shop", "Group"):
     dl = desc.lower()
     for orient in ("horizontal", "stacked"):
         st = orient == "stacked"
         variants = {
-            "colour": (C["graphite"], C["copper_text"], C["graphite"], C["copper"], None),
-            "reverse": (C["ink"], C["copper_light"], C["ink"], C["copper"], C["graphite"]),
+            "colour": (C["graphite"], DESC[desc][0], C["graphite"], C["copper"], None),
+            "reverse": (C["ink"], DESC[desc][1], C["ink"], C["copper"], C["graphite"]),
             "mono-graphite": (C["graphite"], C["graphite"], C["graphite"], C["graphite"], None),
             "mono-white": (C["white"], C["white"], C["white"], C["white"], None),
         }
@@ -137,8 +136,8 @@ for desc in ("Shop", "Group"):
 for desc in ("Shop", "Group"):
     dl = desc.lower()
     variants = {
-        "colour": (C["graphite"], C["copper_text"], C["graphite"], C["copper"], None),
-        "reverse": (C["ink"], C["copper_light"], C["ink"], C["copper"], C["graphite"]),
+        "colour": (C["graphite"], DESC[desc][0], C["graphite"], C["copper"], None),
+        "reverse": (C["ink"], DESC[desc][1], C["ink"], C["copper"], C["graphite"]),
         "mono-graphite": (C["graphite"], C["graphite"], C["graphite"], C["graphite"], None),
         "mono-white": (C["white"], C["white"], C["white"], C["white"], None),
     }
@@ -167,7 +166,7 @@ write(f"{OUT}/social/profile-1080.svg", profile())
 
 # ---- Banners
 BANNERS = {"linkedin-banner": (1584, 396), "facebook-cover": (1640, 624), "x-header": (1500, 500)}
-TAG = {"Shop": "Local stock, straight answers.", "Group": "IT equipment supply for South African business."}
+TAG = {"Shop": "No surprises. Just tech.", "Group": "IT equipment supply for South African business."}
 def banner(desc, w, h):
     body = ""
     # oversized mark bleeding off the right edge
@@ -175,14 +174,14 @@ def banner(desc, w, h):
     big_w = big_h * MW / MH
     b, bw = mark(w - big_w * 0.72, -h * 0.12, big_h, C["blade_dim"], C["copper"])
     body += b
-    cap = h * 0.17
-    lb, lw, lh = lockup_group(C["ink"], C["copper_light"], C["ink"], C["copper"], desc, 0, 0, cap, False)
+    cap = h * 0.13
+    lb, lw, lh = inline_group(C["ink"], DESC[desc][1], C["ink"], C["copper"], desc, 0, 0, cap)
     lx = w * 0.30 if w / h < 3.5 else w * 0.26
     ly = (h - lh) / 2 - h * 0.06
     body += f'<g transform="translate({lx:.2f},{ly:.2f})">{lb}</g>'
     tsize = cap * 0.42 / (MANR["OS/2"].sCapHeight / MANR["head"].unitsPerEm) * 0.72
     td, tw, _ = text_path(MANR, TAG[desc], tsize, 0.0)
-    body += f'<path fill="#9AA5B3" transform="translate({lx:.2f},{ly+lh+cap*0.9:.2f})" d="{td}"/>'
+    body += f'<path fill="#9AA5B3" transform="translate({lx:.2f},{ly+lh+cap*1.2:.2f})" d="{td}"/>'
     return svg(w, h, body, C["graphite"], f"Vectra {desc}")
 for desc in ("Shop", "Group"):
     for key, (w, h) in BANNERS.items():
