@@ -81,6 +81,23 @@ def lockup_group(word_fill, desc_fill, left, right, desc, x0=0, y0=0, cap=100, s
         body += f'<path fill="{desc_fill}" transform="translate({x0+(width-dw)/2:.2f},{ty+cap+gap_v+dcap:.2f})" d="{dd}"/>'
         return body, width, mh + cap * 0.45 + block_h
 
+def inline_group(word_fill, desc_fill, left, right, desc, x0=0, y0=0, cap=100):
+    """One-line lockup: mark, VECTRA, descriptor on a shared baseline. Returns (body, width, height)."""
+    size = cap / (SORA["OS/2"].sCapHeight / 1000)
+    d_w, w_w, _ = text_path(SORA, "VECTRA", size, -0.01)
+    dcap = cap * 0.62
+    dsize = dcap / (MANR["OS/2"].sCapHeight / MANR["head"].unitsPerEm)
+    dd, dw, _ = text_path(MANR, desc.upper(), dsize, 0.18)
+    mh = cap * 1.3
+    mbody, mw = mark(x0, y0, mh, left, right)
+    base = y0 + (mh + cap) / 2          # VECTRA cap height centred on the mark
+    tx = x0 + mw + cap * 0.38
+    dx = tx + w_w + cap * 0.30
+    body = mbody
+    body += f'<path fill="{word_fill}" transform="translate({tx:.2f},{base:.2f})" d="{d_w}"/>'
+    body += f'<path fill="{desc_fill}" transform="translate({dx:.2f},{base:.2f})" d="{dd}"/>'
+    return body, (dx - x0) + dw, mh
+
 def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     open(path, "w").write(content)
@@ -115,6 +132,19 @@ for desc in ("Shop", "Group"):
             body, w, h = lockup_group(wf, df, l, r, desc, P, P, 100, st)
             write(f"{OUT}/logo/lockup/vectra-{dl}-{orient}-{vname}.svg",
                   svg(w + 2 * P, h + 2 * P, body, bg, f"Vectra {desc}"))
+
+# ---- Inline lockups (one line, for headers and tight bars)
+for desc in ("Shop", "Group"):
+    dl = desc.lower()
+    variants = {
+        "colour": (C["graphite"], C["copper_text"], C["graphite"], C["copper"], None),
+        "reverse": (C["ink"], C["copper_light"], C["ink"], C["copper"], C["graphite"]),
+        "mono-graphite": (C["graphite"], C["graphite"], C["graphite"], C["graphite"], None),
+        "mono-white": (C["white"], C["white"], C["white"], C["white"], None),
+    }
+    for vname, (wf, df, l, r, bg) in variants.items():
+        body, w, h = inline_group(wf, df, l, r, desc, P, P, 100)
+        write(f"{OUT}/logo/lockup/vectra-{dl}-inline-{vname}.svg", svg(w + 2 * P, h + 2 * P, body, bg, f"Vectra {desc}"))
 
 # ---- Favicon (transparent, full colour)
 fh = 60 * MH / MW

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-22 · v1.2
+- Added the inline lockup: mark, VECTRA and SHOP or GROUP on one line, in colour, reverse, mono-graphite and mono-white. It is the default for the website header.
+
 ## 2026-11-22 · v1.1
 - New logo: Split V (graphite and copper blades), chosen over Notch V and Tick V. Replaces the three-facet blue and silver mark.
 - Wordmark is upright Sora 800 with a Manrope descriptor, replacing the italic.

@@ -71,7 +71,7 @@ These apply to every product on the site, whether loaded from the Syntech feed o
 
 The Split V: two blades meeting at a point. The left blade is graphite (or white on dark grounds), the right blade is always copper, the same "act here" colour as the buy button. It replaces the three-facet blue and silver mark from 22 November 2026.
 
-- **Lockups:** the mark beside "VECTRA" in Sora 800, with a descriptor (SHOP or GROUP) in tracked Manrope 700. Use horizontal by default, stacked where width is tight. Files are in `brand/assets/logo/lockup/`.
+- **Lockups:** the mark beside "VECTRA" in Sora 800, with a descriptor (SHOP or GROUP) in tracked Manrope 700. Three layouts: **inline** (mark, VECTRA and the descriptor on one line) for the website header, email headers and any bar under 60px tall; **horizontal** (descriptor under VECTRA) for documents, invoices and packaging; **stacked** where width is tight. Files are in `brand/assets/logo/lockup/`.
 - **Versions:** `colour` on white or bench, `reverse` on graphite, `mono-graphite` for one-colour print and invoices, `mono-white` on photos. The mark alone also has an `on-copper` version.
 - **Clear space:** keep at least the height of the descriptor's letters, doubled, clear on every side. The SVG files already include it.
 - **Minimum size:** mark alone 16px (favicon), horizontal lockup 120px wide on screen, 30mm in print.
