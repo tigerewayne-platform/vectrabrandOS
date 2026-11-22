@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-22 · v2.0
+- Position confirmed by Wayne: radical honesty. Tagline "No surprises. Just tech." (Wayne's choice).
+- Added "Things we won't do" and the stock line as the brand's signature habit.
+- Voice rewritten around four rules: facts over adjectives, say the limitation, plain words first, no pressure.
+- New wordmark (Wayne chose option C): lowercase "vectra" in Geist Bold with the descriptor in Geist Light. Shop descriptor copper, Group descriptor slate. The two-line horizontal lockup is retired; horizontal and inline are now the same one-line lockup.
+- Shop banners now carry the tagline.
+
+## 2026-11-22 · v1.2
+- Added the inline lockup: mark, VECTRA and SHOP or GROUP on one line, in colour, reverse, mono-graphite and mono-white. It is the default for the website header.
+
 ## 2026-11-22 · v1.1
 - New logo: Split V (graphite and copper blades), chosen over Notch V and Tick V. Replaces the three-facet blue and silver mark.
 - Wordmark is upright Sora 800 with a Manrope descriptor, replacing the italic.
