@@ -22,8 +22,8 @@
   --vs-radius-sm: 6px;
   --vs-radius-md: 14px;
   --vs-radius-pill: 999px;
-  --vs-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
-  --vs-font-sans: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --vs-font-display: "Geist", "Segoe UI", system-ui, sans-serif;
+  --vs-font-sans: "Geist", "Segoe UI", system-ui, sans-serif;
   --vs-font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 @media (prefers-color-scheme: dark) {

@@ -72,8 +72,7 @@ Graphite & Copper. Graphite is the frame and the ink; copper is the only loud co
 
 ## 4. Type
 
-- **Sora** (display) for headings and hero lines only. Tight tracking, heavy weights.
-- **Manrope** (body) for everything else, including prices at weight 800.
+- **Geist** for everything, the same family as the wordmark. Headings at 700 with -0.02em tracking, body at 400, prices at 800.
 - **JetBrains Mono** for SKUs and spec values in tables.
 - Prices always use tabular figures so they line up in grids.
 
