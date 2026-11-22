@@ -83,7 +83,7 @@ These apply to every product on the site, whether loaded from the Syntech feed o
 
 - **Title format:** `Brand Model Key-spec Type`, e.g. "UGREEN 55W Fast Charging Power Bank". No promo words in titles, no ALL CAPS, max 70 characters so it fits Google Shopping.
 - **Price display:** `R1 099` with a space as thousands separator, no cents unless non-zero, always followed by "incl. VAT" on product pages. Was-price only when the item genuinely sold at that price in the last 30 days.
-- **Stock display:** show CPT and JHB separately on every card and product page. 6 or more = "In stock", 1 to 5 = "2 left", 0 with an ETA = "Back around 14 Dec", 0 with no ETA = "Out of stock".
+- **Stock display (the stock line):** one line per warehouse on every card and product page, with the real count: "12 in Cape Town", "3 in Johannesburg". Above 50 show "50+". Empty with an ETA: "Back in Johannesburg around 14 Dec". Empty with no ETA: "None in Cape Town". Green at 6 or more, amber at 1 to 5 or with an ETA, red when none.
 - **Descriptions:** never publish the distributor's copy unchanged on priority products. Rewrite the top 300 by revenue in Vectra voice: one line on who it is for, three to five spec bullets that matter, one honest limitation.
 - **Images:** distributor packshots on pure white, hosted on our own server, never hot-linked. Minimum 1000px square. No added text or badges baked into images.
 - **SKU:** prefix distributor SKUs with `VG-` (already in use). Never change a SKU once live.
