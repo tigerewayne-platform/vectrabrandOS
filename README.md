@@ -8,7 +8,10 @@ The brand operating system for Vectra Shop (vectrashop.co.za). Everything carryi
 | `brand/tokens.json` | The single source for colours (light and dark), type, spacing and radius. |
 | `dist/tokens.css` | CSS custom properties (`--vs-*`) generated from the tokens. |
 | `dist/theme.json.fragment.json` | Palette, fonts and spacing for the WordPress block theme's `theme.json`. |
+| `brand/assets/logo/` | Split V mark, Shop and Group lockups (SVG and PNG), favicons and app icons. |
+| `brand/assets/social/` | Profile image and banners for LinkedIn, Facebook and X, for Shop and Group. |
 | `scripts/build_tokens.py` | Rebuilds `dist/` from `brand/tokens.json`. |
+| `scripts/build_logos.py` | Rebuilds the logo SVGs with outlined type. |
 | `CHANGELOG.md` | Every change to the brand, dated. |
 
 ## Rules for changing the brand
