@@ -83,12 +83,12 @@
         {
           "slug": "display",
           "name": "Display",
-          "fontFamily": "\"Sora\", \"Segoe UI\", system-ui, sans-serif"
+          "fontFamily": "\"Geist\", \"Segoe UI\", system-ui, sans-serif"
         },
         {
           "slug": "sans",
           "name": "Sans",
-          "fontFamily": "\"Manrope\", \"Segoe UI\", system-ui, sans-serif"
+          "fontFamily": "\"Geist\", \"Segoe UI\", system-ui, sans-serif"
         },
         {
           "slug": "mono",

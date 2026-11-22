@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-22 · v2.1
+- Type is Geist throughout (replaces Sora and Manrope) so the site matches the wordmark. Body weight 400.
+- Stock display rule matches the stock line: real counts per city.
+
 ## 2026-11-22 · v2.0
 - Position confirmed by Wayne: radical honesty. Tagline "No surprises. Just tech." (Wayne's choice).
 - Added "Things we won't do" and the stock line as the brand's signature habit.
